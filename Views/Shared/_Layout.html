@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} </title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'content/dist/css/font-awesome-4.7.0/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'content/dist/css/home.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'content/layui/css/layui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'content/dist/css/main.css' %}" />
+    <script src="{% static 'content/dist/script/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body class="layui-layout-body">
+    <div  id="layui-container">
+        <div class="layui-layout layui-layout-ui">
+            <!-- 头部区域  开始-->
+            <div class="layui-header">
+                <ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item layui_flexible" lay-unselect="">
+                        <a href="javascript:;" layui-event="flexible" title="侧边伸缩">
+                            <i class="fa fa-outdent" id="layui_flexible"></i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item" lay-unselect="">
+                        <a href="javascript:;">
+                            <i class="fa fa-globe"></i>
+                            <cite style="font-size:14px">多语言</cite>
+                        </a>
+                        <dl class="layui-nav-child" style="min-width:100px;max-width:180px">
+                            <dd>
+                                <a class="ChangeLanguage" href=""><cite>中文简体</cite><i class="fa"></i></a>
+                            </dd>
+                            <dd>
+                                <a class="ChangeLanguage" href="" LanguageKey="zh-TW"><cite>中文繁体</cite><i class="fa"></i></a>
+                            </dd>
+                            <dd>
+                                <a class="ChangeLanguage" href="" LanguageKey="en-US"><cite>English</cite><i class="fa"></i></a>
+                            </dd>
+                            <dd>
+                                <a class="ChangeLanguage" href=""><cite>Japanese</cite><i class="fa"></i></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item" lay-unselect="">
+                        <a href="javascript:;" layui-event="refresh" title="刷新">
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a lay-href="app/message/">
+                            <i class="fa fa-bell-o"></i>
+                            <cite style="display:none"></cite>
+                            <span class="layui-badge-dot"></span>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="fa fa-sticky-note-o"></i>
+                        </a>
+                    </li>                    
+                    {% if false %}
+
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <cite>&nbsp; Admin &nbsp;</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:">
+                                    <cite>用户中心</cite>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">
+                                    <i class="badge bg-danger pull-right">40%</i>
+                                    <span>设置</span>
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">
+                                    <i class="label bg-info pull-right">new</i>帮助
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>                    
+                    <li class="layui-nav-item">
+                        <a href=""><i class="fa fa-sign-out"></i>&nbsp; 登出</a>
+                    </li>
+                    {% else %}
+                
+                    <li class="layui-nav-item">
+                        <a href=""><i class="fa fa-sign-in"></i>&nbsp;登录</a>
+                    </li>
+                
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- 头部区域  结束-->
+            <!--侧边菜单  开始-->
+            <div class="layui-side layui-side-menu">
+                <div class="layer-side-scroll" id="layui-navbar-side" lay-filter="sidenav">
+                    <div class="layui-logo" lay-href>
+                        <span>SCZ</span>
+                    </div>
+                    <ul class="layui-nav layui-nav-tree layui-nav-side">
+                        <li class="layui-nav-item">
+                            <a href="javascript:">
+                                <cite>导航菜单</cite>
+                            </a>
+                        </li>
+                        {% for m in Menu  %}
+                            <li class="layui-nav-item">
+                                    <a href="javascript:" lay-direction="">
+                                        <i class="{{ m.ShowPIC }}" aria-hidden="true"></i>
+                                        <cite>&nbsp;&nbsp;{{ m.MenuName }}</cite>
+                                    </a>
+                                {% if m.Child %}
+                                    <dl class="layui-nav-child">
+                                            {% for m in m.Child  %}
+                                                <dd>
+                                                    <a lay-href="{{ menu.URL   }} menu.MenuID" data-href="{{ menu.URL }}" href="javascript:">
+                                                        <i class="@menu.ShowPIC" data-icon="{{ menu.ShowPIC }}" aria-hidden="true"></i>
+                                                        <cite style="margin-left:15px">&nbsp;&nbsp;{{menu.MenuName}}</cite>
+                                                    </a>
+                                                </dd>
+                                             {% endfor  %}
+                                        </dl>
+                                {% endif %}
+                                 </li>
+                        {% endfor  %}                        
+                    </ul>
+                </div>
+            </div>
+            <!--侧边菜单  结束-->
+            <!--页面Tab  开始-->
+            <div class="layui-pagetabs" id="">
+                <!--页面标签  左移  开始-->
+                <div class="layui-tabs-control layui-icon-prev fa fa-angle-double-left " layui-event="leftPage"></div>
+                <!--页面标签  左移  结束-->
+
+                <div class="layui-tab layui-tabs-card" lay-filter="layui-tabs" lay-unauto="" lay-allowclose="true">
+                    <!--页面标签  开始-->
+                    <ul class="layui-tab-title">
+                        <li lay-id="/" class="layui-this">
+                            <i class="fa fa-home"></i>
+                            <i class="layui-icon layui-unselect layui-tab-close">ဆ</i>
+                        </li>
+                    </ul>
+                    <!--页面结束  开始-->
+                    <!--页面内容  开始-->
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <iframe src="home" style="display:inline;width:100%;height:100%;border:0"></iframe>
+                        </div>
+                          {% block content %}{% endblock %}
+                    </div>
+                    <!--页面内容  结束-->
+                </div>
+
+                <!--页面标签  右移  开始-->
+                <div class="layui-tabs-control layui-icon-next fa fa-angle-double-right " layui-event="rightPage"></div>
+                <!--页面标签  右移  结束-->
+
+            </div>
+            <!--页面Tab  结束-->
+            <!--右键菜单  开始-->
+            <div class="layui-contextmenu">
+                <ul class="layui-nav layui-tabs-select layui-tabs-tools" lay-filter="layui-pagetabs-nav">
+                    <li class="layui-nav-item" data-target="refreshCurrent" lay-unselect><a href="javascript:;">刷新当前标签页</a></li>
+                    <li class="layui-nav-item" data-target="closeCurrent" lay-unselect><a href="javascript:;">关闭当前标签页</a></li>
+                    <li class="layui-nav-item" data-target="closeOther" lay-unselect><a href="javascript:;">关闭其它标签页</a></li>
+                    <li class="layui-nav-item" data-target="closeAll" lay-unselect><a href="javascript:;">关闭全部标签页</a></li>
+                </ul>
+            </div>
+            <!--右键菜单  结束-->
+        </div>
+    </div>
+
+    <script src="{% static 'content/dist/script/jquery-2.2.0.min.js' %}"></script>
+    <script src="{% static 'content/layui/layui.js' %}"></script>
+    <script src="{% static 'content/dist/script/respond.min.js' %}"></script>
+    {% block scripts %}{% endblock %}
+    <script type="text/javascript">
+        layui.use(['element', "layer",], function () {
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+td[data-field=jietu] .layui-table-cell {
+    border-right: 20px solid transparent;
+}
+
+.layui-layer-content .layui-table-tips-main {
+    max-height: 500px;
+}
+.layui-pull-left {
+    float: left;
+}
+
+.layui-pull-right {
+    float: right;
+}
+
+.layui-card i.layui-tab-edit:hover {
+    border-radius: 2px;
+    background-color: #009688;
+    color: #fff;
+    cursor: pointer;
+}
+
+.layui-card i.layui-tab-close:hover {
+    border-radius: 2px;
+    background-color: #ff5722;
+    color: #fff;
+    cursor: pointer;
+}
+
+.layui-keywords_filter {
+    text-align: right;
+}
+
+.layui-input-sm {
+    height: 30px;
+    margin-top: -2px;
+}
+
+.layui-clearfix:before,
+.layui-clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.layui-text-center {
+    text-align: center;
+}
+
+.layui-clearfix:after {
+    clear: both;
+}
+.add-host-card .layui-card-body .layui-text-center{
+        height: 67px;
+    font-size: 48px;
+    
+    line-height: 66px;
+    cursor: pointer;
+}
+.add-host-card .layui-card-body {
+    color: #ccc;
+}
+.add-host-card .layui-card-body:hover{
+    background: #009688;
+    color: #fff;
+}
