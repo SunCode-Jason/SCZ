@@ -23,9 +23,9 @@ def login(requset):
             if check_password(password,user[0].Password):
                 return redirect("/index")
             else:
-               return render(requset,'Base/login.html')
+               return render(requset,'Base/login.html',{'errormessage': '密码错误！'})
         else:
-            return  render(requset,'Base/login.html')
+            return  render(requset,'Base/login.html',{'errormessage': '用户名不存在！'})
 
 
 
